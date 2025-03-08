@@ -1,0 +1,18 @@
+{
+    "application":{
+        "version": "0.0.1",
+        "name": "shorturl",
+        "description": "a url shortner like bitly"
+    },
+    "db":{
+        "host":"127.0.0.1",
+        "port": 5432,
+        "username": "",
+        "password": ""
+    },
+    "redis":{
+        "host":"127.0.0.1",
+        "port": 5432,
+        "db": 0
+    }
+}
