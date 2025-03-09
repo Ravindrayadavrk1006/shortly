@@ -1,3 +1,5 @@
 __pycache__
 config.json
 logs
+redis_backup
+.vscode

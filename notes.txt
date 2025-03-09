@@ -1,0 +1,5 @@
+1. starting the redis server in wsl-windows/linux using docker
+    #it will persist the data on every write
+    docker run --name redis -p 6379:6379 -d \
+    -v /mnt/d/Repos/projects/url_shortner/redis_backup:/data \
+    redis:latest redis-server --loglevel debug --appendonly yes --appendfsync everysec --dir /data
