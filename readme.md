@@ -17,8 +17,8 @@ Ensure you have the following installed:
 
 ### Clone the Repository
 ```sh
-git clone https://github.com/Ravindrayadavrk1006/url-shortener.git
-cd url-shortener
+git clone https://github.com/Ravindrayadavrk1006/shortly.git
+cd shortly
 ```
 
 ### Create a Virtual Environment (Optional but Recommended)
