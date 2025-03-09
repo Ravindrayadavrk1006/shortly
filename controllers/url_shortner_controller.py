@@ -1,7 +1,7 @@
 from flask_restx import Namespace, Resource, reqparse
 from flask import Response
 
-from logging_config import logger
+from core.loggings.logging_config import logger
 
 url_shortner_ns = Namespace('url-shortner/')
 

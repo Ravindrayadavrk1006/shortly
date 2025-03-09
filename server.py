@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restx import Api, Resource
 from blueprints import blueprint
-from logging_config import logger
+from core.loggings.logging_config import logger
 app = Flask(
     __name__
 )

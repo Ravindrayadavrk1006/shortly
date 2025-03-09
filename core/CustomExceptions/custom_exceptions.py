@@ -1,0 +1,3 @@
+
+class RedisException(Exception):
+    pass
