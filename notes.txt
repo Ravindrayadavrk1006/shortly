@@ -1,5 +1,33 @@
 1. starting the redis server in wsl-windows/linux using docker
     #it will persist the data on every write
     docker run --name redis -p 6379:6379 -d \
-    -v /mnt/d/Repos/projects/url_shortner/redis_backup:/data \
+    -v /mnt/d/Environments/redis_backup:/data \
     redis:latest redis-server --loglevel debug --appendonly yes --appendfsync everysec --dir /data
+2. staring postgres
+    in a windows powershell without running any other command beforehand, run the below command
+
+    #volume mount inside the docker volume mount
+    1. docker volume create postgres_data      #doesn't require to be execute this command every time, just first time
+
+    2. docker run -d --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e PGDATA=/var/lib/postgresql/data/pgdata -v postgres_data:/var/lib/postgresql/data postgres:latest
+
+    db_created -> url_shortner_db
+    schema-created -> url_schema
+
+    CREATE TABLE url_schema.url_shortner_tb (
+    id SERIAL PRIMARY KEY,
+    short_hash VARCHAR(10),
+    long_url TEXT,
+	created_at timestamp default NOW(),
+	expire_at TIMESTAMPTZ DEFAULT NOW() + INTERVAL '10 years',
+    url_counter BIGINT unique);
+
+
+    #after going inside the container run
+	1. psql -U postgres
+	2. \l //for listing the databases
+	3. create database db_name  eg. create database url_shortner_db;   #create the databse
+	4. \c db_name   #switching to that db
+	5. \dn list the schema
+	6. set search_path to url_schema;
+    7. \dt for listing the tables
