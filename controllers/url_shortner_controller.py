@@ -3,6 +3,7 @@ from flask import jsonify, make_response, redirect
 from core.loggings.logging_config import logger
 from core.url_shortner.url_shortner_core import UrlShortnerCore
 from config import config
+from core.utils.util import timeit
 url_shortner_ns = Namespace('url-shortner/')
 
 long_url_parser = reqparse.RequestParser()
@@ -23,6 +24,7 @@ short_url_parser.add_argument(
 @url_shortner_ns.route('')
 class UrlShortner(Resource):
     @url_shortner_ns.expect(long_url_parser)
+    @timeit
     def post(self):
         try:
             args = long_url_parser.parse_args()
@@ -68,6 +70,7 @@ url_redirect_ns = Namespace('')
 
 @url_redirect_ns.route('/<string:hash_value>')
 class UrlRedirect(Resource):
+    @timeit
     def get(self, hash_value):
         try:
             if not hash_value:

@@ -32,19 +32,25 @@ class UrlShortnerCore:
         self.shortly_base_url = shortly_base_url
     
     def initialize(self):
-        self.redis_obj  = RedisCore(
-                host = self.redis_host,
-                port = self.redis_port,
-                db_number= self.redis_db_number,
-                username= self.redis_username,
-                password = self.redis_password
-            )
-        self.db_manager = DatabaseManager(
-                host= self.db_host,
-                port = self.db_port,
-                username= self.db_username,
-                password= self.db_password
-            )
+        try:
+
+            self.redis_obj  = RedisCore(
+                    host = self.redis_host,
+                    port = self.redis_port,
+                    db_number= self.redis_db_number,
+                    username= self.redis_username,
+                    password = self.redis_password
+                )
+            self.db_manager = DatabaseManager(
+                    host= self.db_host,
+                    port = self.db_port,
+                    username= self.db_username,
+                    password= self.db_password
+                )
+        except Exception as e:
+            logger.exception(f"error raised ", exc_info= True)
+            raise
+
     def get_shorten_url(self, long_url):
         try:
             #initialize the objects 
@@ -55,7 +61,6 @@ class UrlShortnerCore:
             hash_val = self._generate_62base_hash(url_counter_uid)
             
             all_stored_data = self.get_all_shortened_url()
-            logger.info(all_stored_data)
 
             #insert the value in the table
             self.db_manager.insert_into_table(
