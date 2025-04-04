@@ -53,7 +53,7 @@ http://127.0.0.1:5000/
 | Method | Endpoint | Description |
 |--------|---------|-------------|
 | POST | `/url-shortner` | Shortens a given URL |
-| GET  | `/url-shortner` | Redirects to the original URL |
+| GET  | `/<short-url>` | Redirects to the original URL |
 
 ## Logging
 Logging is set up using Python's `logging` module. Logs are stored in the `logs/` directory.
