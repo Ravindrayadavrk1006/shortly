@@ -65,8 +65,6 @@ Logging is set up using Python's `logging` module. Logs are stored in the `logs/
 4. Push to the branch (`git push origin feature-name`)
 5. Open a Pull Request
 
-## License
-
 ## Contact
 For any inquiries, reach out to [ravindrayadavrk1012@gmail.com].
 
